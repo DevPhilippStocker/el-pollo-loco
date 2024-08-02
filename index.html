@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <script src="classes/drawable-object.class.js"></script>
+    <script src="classes/status-bar-bottles.class.js"></script>
+    <script src="classes/status-bar-life.class.js"></script>
+    <script src="classes/status-bar-coins.class.js"></script>
+    <script src="classes/status-bar-life-endboss.class.js"></script>
+    <script src="classes/status-bar-endboss-icon.class.js"></script>
+    <script src="classes/keyboard.class.js"></script>
+    <script src="js/imageCacheData.js"></script>
+    <script src="js/imageCache.js"></script>
+    <script src="js/game.js"></script>
+    <script src="classes/movable-object.class.js"></script>
+    <script src="classes/throwable-object.class.js"></script>
+    <script src="classes/bottles.class.js"></script>
+    <script src="classes/coins.class.js"></script>
+    <script src="classes/character.class.js"></script>
+    <script src="classes/chicken.class.js"></script>
+    <script src="classes/small-chicken.class.js"></script>
+    <script src="classes/cloud.class.js"></script>
+    <script src="classes/background-object.class.js"></script>
+    <script src="classes/endboss.class.js"></script>
+    <script src="classes/level.class.js"></script>
+    <script src="levels/level1.js"></script>
+    <script src="classes/world.class.js"></script>
+    <script src="classes/endscreen.class.js"></script>
+   
+    <title>El Pollo Loco</title>
+</head>
+<body onload="init()">
+    
+    <div id="loader"></div>
+
+    <div class="rotate-screen">
+        <span class="rotate-text">Please rotate device</span>
+    </div>
+
+    <div class="game-content">
+        <div id="initPage" class="init-page"> 
+
+            <img id="startImage" class="startImage" src="img/9_intro_outro_screens/start/startscreen_1.png">
+            <button id="start-btn" class="start-btn" onclick="startGame(this), playAudio('audio/klick-button.mp3')">Start</button>
+            <button id="control-btn" class="control-btn" onclick="openPopUpGame(this)">Control</button>
+
+            <div id="popUp" class="popUp d-none" onclick="doNotClosePopup(event)">
+                <div class="control-content">
+                    <div class="popUpLeft">
+                        <img src="img/arrow_right.png">
+                        <img src="img/arrow_left.png">
+                        <img src="img/arrow_up.png">
+                        <img id="space" src="img/space.png">
+                        <span>F</span>
+                    </div>
+                    <div class="popUpRight">
+                        <div>Walk Right</div>
+                        <div>Walk Left</div>
+                        <div>Jump</div>
+                        <div>Throw Bottles</div>
+                        <div>Pause/Play</div>
+                    </div> 
+                </div>
+                <hr>
+                <div class="info">Defeat the boss, collect at least 5 bottles. Watch out for the chickens, kill them by jumping on them.</div>
+            </div>
+        </div>
+        
+        <div id="canvas-container" class="canvas-container d-none">
+            <canvas id="canvas" class="canvas" width="720" height="480"></canvas>
+            <button onclick="startGame(this)" id="restart-button" class="restart-button d-none">Restart</button>
+            <button onclick="home(this)" id="home-button" class="home-button d-none">Home</button>
+            <img onclick="home(this)" class="home" src="img/home.png">
+            <img onclick="pauseAndContinueGame(this)" class="play-pause" src="img/play.png">
+            <img onclick="stopMusic(this)" class="music-off" src="img/music-on.png">
+            <img onclick="stopSound(this)" id="mute" class="mute" src="img/no-mute.png">
+            <img onclick="openPopUpGame(this)" class="control" src="img/control.png">
+            <img onclick="fullscreen()" class="fullscreen" src="img/fullscreen.png">
+
+            <div class="touch-panel">
+                <div class="touch-left">
+                    <img id="left-touch" src="img/walk-left-touch.png">
+                    <img id="right-touch" src="img/walk-right-touch.png">
+                </div>
+                <div class="touch-right">
+                    <img id="jump-touch" src="img/jump-touch.png">
+                    <img id="throw-touch" src="img/bottle-touch.png">
+                </div>
+            </div>
+            <div id="popUpGame" class="popUp" onclick="doNotClosePopup(event)">
+                <div class="control-content">
+                    <div class="popUpLeft">
+                        <img src="img/arrow_right.png">
+                        <img src="img/arrow_left.png">
+                        <img src="img/arrow_up.png">
+                        <img id="space-game"src="img/space.png">
+                        <span>F</span>
+                    </div>
+                    <div class="popUpRight">
+                        <div>Walk Right</div>
+                        <div>Walk Left</div>
+                        <div>Jump</div>
+                        <div>Throw Bottles</div>
+                        <div>Pause/Play</div>
+                    </div> 
+                </div>
+                <hr>
+                <div class="info">Defeat the boss, collect at least 5 bottles. Watch out for the chickens, kill them by jumping on them.</div>
+            </div>
+        </div>
+
+        <img src="img/frame-bg.png" id="frame-bg" class="frame-bg" onclick="closePopUpGame(this)"> 
+    </div>
+</body>
+</html>

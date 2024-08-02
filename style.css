@@ -1,0 +1,552 @@
+@font-face {
+font-family: "Alphawood";
+src: url("fonts/alphawood.woff") format("woff")
+}
+
+@font-face {
+    font-family: "DancingScript";
+    src: url("fonts/dancingscript.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Mexican";
+    src: url("fonts/mexican.woff") format("woff");
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    max-width: 100vw;
+    background-image: url('img/background.jpg');
+    background-size: cover;
+}
+
+h1 {
+    font-size: 90px;
+    font-family: 'Alphawood';
+    z-index: 2;
+    position: absolute;
+    top: 20px;
+}
+
+.game-content {
+    position: relative;
+}
+
+.init-page {
+    position: relative;
+}
+
+.game-over-page {
+    position: relative;
+}
+
+.init-page img {
+    width: 720px;
+    height: 480px;
+}
+
+.game-content .frame-bg {
+    position: absolute;
+    top: -79px;
+    left: -75px;
+    width: calc(100% + 165px);
+    height: calc(100% + 178px);
+}
+
+button {
+    position: absolute;
+    top: -10px;
+    width: 171px;
+    height: 82px;
+    padding: 5px 24px;
+    background-image: url(img/text-bg.png);
+    background-size: 100% 100%;
+    font-family: 'Alphawood';
+    font-size: 30px;
+    text-align: center;
+    line-height: 88px;
+    letter-spacing: 2px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    z-index: 2;
+}
+
+button:hover {
+    animation-timing-function: ease-in-out;
+    animation-name: headShake;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@keyframes headShake {
+    0% {
+      transform: translateX(0);
+    }
+  
+    6.5% {
+      transform: translateX(-6px) rotateY(-9deg);
+    }
+  
+    18.5% {
+      transform: translateX(5px) rotateY(7deg);
+    }
+  
+    31.5% {
+      transform: translateX(-3px) rotateY(-5deg);
+    }
+  
+    43.5% {
+      transform: translateX(2px) rotateY(3deg);
+    }
+  
+    50% {
+      transform: translateX(0);
+    }
+}
+  
+.start-btn{
+    left: 25%;
+    color:black;
+}
+
+.control-btn {
+    right: 25%;
+    color: black;
+}
+
+.home-button {
+    right: 25%;
+    color: black;
+    z-index: 999;
+}
+
+.restart-button {
+    left: 25%;
+    color: black;
+    z-index: 999;
+}
+
+canvas {
+    background-color: black;
+    display: none;
+    position: block;
+}
+
+.popUp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 454px;
+    height: 315px;
+    margin: auto;
+    padding: 31px 10px;
+    background-color: rgb(255, 150, 1);
+    border-radius: 15px;
+    box-shadow: 2px 2px 6px #6d3205, -2px -2px 6px #6d3205; 
+    z-index: 999;
+}
+
+
+.control-content {
+    display: flex;
+    justify-content: space-evenly;
+    height: 177px;
+}
+.popUpLeft, .popUpRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: default;
+}
+
+.popUpRight div {
+    margin-bottom: 5px;
+    font-family: 'DancingScript';
+    font-size: 25px;
+}
+
+.popUpLeft img {
+    width: 25px;
+    height: 25px;
+    margin: 7px 50px 7px 0;
+}
+
+.popUpLeft span {
+    font-size: 23px;
+    margin: 0px 50px 7px 0;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 2px;
+    opacity: 1;
+}
+
+.info {
+    font-family: 'Mexican';
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.d-none {
+    display: none;
+}
+
+.overlay-bg {
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.startGameAnimation {
+    animation-name: fadeInOpacity;
+	animation-timing-function: ease-in;
+	animation-duration: 225ms;
+}
+
+.fullscreen {
+    position: absolute;
+    top: 425px;
+    right: 10px;
+    width: 30px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.fullscreen:hover {
+    transform: scale(1.1); 
+}
+
+.canvas-container {
+    position: relative;
+    height: 480px;
+    width: 720px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.music-off, .mute, .control {
+    width: 48px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.home {
+    position: absolute;
+    width: 33px;
+    cursor: pointer;
+    z-index: 10;
+    top: 15px;
+    right: 275px;
+}
+
+.home:hover {
+    transform: scale(1.1); 
+}
+
+.play-pause {
+    width: 40px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    top: 13px;
+    right: 215px;
+}
+
+.play-pause:hover {
+    transform: scale(1.1); 
+}
+
+.music-off {
+    top: 10px;
+    right: 150px;
+}
+
+.music-off:hover {
+    transform: scale(1.1); 
+}
+
+.mute {
+    top: 10px;
+    right: 89px;
+}
+
+.mute:hover {
+    transform: scale(1.1); 
+}
+
+.control {
+    top: 7px;
+    right: 24px;
+}
+
+.control:hover {
+    transform: scale(1.1); 
+}
+
+#space {
+    width: 80px; 
+    height: 40px;
+}
+
+#space-game {
+    width: 80px;
+    height: 40px;
+}
+
+.rotate-screen {
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 999;
+    color:rgb(255, 150, 1);
+    font-size:  102px;
+    font-family: 'Mexican';
+    text-align: center;
+}
+
+.touch-panel {
+    display: none;
+}
+
+#loader {
+    border: 16px solid #f3f3f3; 
+    border-top: 16px solid #3498db; 
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    z-index: 999;
+    animation: spin 2s linear infinite;
+}
+  
+@keyframes spin {
+    0% { 
+        transform: rotate(0deg); 
+    }
+    100% { 
+        transform: rotate(360deg); 
+    }
+}
+
+@media (max-width: 900px) and (orientation: portrait) {
+    .rotate-screen {
+        display: flex;
+    }
+    .startImage, .frame-bg {
+       display: none;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    canvas {
+        width: 100vw;
+        height: 100vh;
+    }
+    .game-content {
+        width: 100vw;
+        height: 100vh;
+    }
+    .canvas-container {
+        width: 100vw;
+        height: 100vh;
+    }
+    .startImage {
+        width: 100vw;
+        height: 100vh;
+    }
+    .init-page {
+        width: 100vw;
+        height: 100vh;
+    }
+    .init-page img {
+        width: 100vw;
+        height: 100vh;
+    }
+    .frame-bg {
+        display: none;
+    }
+    .popUp {
+        width: 50%;
+        height: 57%;
+    }
+    button {
+        height: 66px;
+        top: -2px;
+        width: 130px;
+        font-size: 22px;
+        line-height: 69px;
+    }
+    #space {
+        width: 60px; 
+        height: 20px;
+    }
+    #space-game {
+        width: 40px;
+        height: 20px;
+    }
+    .popUpRight div {
+        font-size: 16px;
+    }
+    .info {
+        font-size: 19px;
+    }
+    .control-content {
+        height: 112px;
+        margin-top: 0;
+    }
+    .popUpLeft span {
+        font-size: 18px;
+    }
+    .control, .mute, .music-off {
+        width: 38px;
+    }
+    .fullscreen {
+        display: none;
+    }
+    .touch-panel {
+        display: flex;
+        position: absolute;
+        bottom: 9px;
+        left: 10px;
+        right: 10px;
+        justify-content: space-between;
+        z-index: 999;
+    }
+    .touch-panel img {
+        width: 71px;
+        height: 40px;
+        object-fit: contain;
+        background: rgb(255, 150, 1);
+        border-radius: 19px;
+        padding-left: 13px;
+        padding-right: 13px;
+        border: 1px solid;
+        color: black;
+        margin-right: 10px;
+    }
+    .touch-panel img:active {
+        background-color: rgb(195, 129, 5);
+    }
+}
+
+@media screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+        width: 100vw;
+    }
+    .game-content {
+        height: 100vh;
+        width: 100vw;
+    }
+    .canvas-container {
+        height: 100vh;
+        width: 100vw;
+    }
+    .startImage {
+        height: 100vh;
+        width: 100vw;
+    }
+    .init-page {
+        height: 100vh;
+        width: 100vw;
+    }
+    .init-page img {
+        height: 100vh;
+        width: 100vw;
+    }
+    .frame-bg {
+        display: none;
+    }
+    .control-content {
+        height: 112px;
+        margin-top: 0;
+    }
+    .popUpLeft span {
+        font-size: 18px;
+    }
+    .popUp {
+        width: 50%;
+        height: 57%;
+    }
+    .popUpRight div {
+        font-size: 16px;
+    }
+    .info {
+        font-size: 19px;
+    }
+    .popUpLeft img {
+        height: 17px;
+        width: 50px;
+        object-fit: contain;
+    }
+    button  {
+        height: 66px;
+        width: 130px;
+        top: -2px;
+        font-size: 22px;
+        line-height: 69px;
+    }
+    .fullscreen {
+        display: none;
+    }
+    .touch-panel {
+        display: flex;
+        position: absolute;
+        bottom: 9px;
+        left: 10px;
+        right: 10px;
+        justify-content: space-between;
+        z-index: 999;
+    }
+    .touch-panel img {
+        width: 71px;
+        height: 40px;
+        object-fit: contain;
+        background: rgb(255, 150, 1);
+        border-radius: 19px;
+        padding-left: 13px;
+        padding-right: 13px;
+        border: 1px solid;
+        color: black;
+        margin-right: 10px;
+    }
+    .touch-panel img:active {
+        background-color: rgb(195, 129, 5);
+    }
+    #space {
+        width: 60px; 
+        height: 20px;
+    }
+    #space-game {
+        width: 40px;
+        height: 20px;
+    }
+}
+    
+   
+   
